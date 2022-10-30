@@ -188,6 +188,6 @@
     <string name="mark_as_read">Mark as read</string>
     <string name="file_not_found">File not found</string>
     <string name="backup_history">Backup History</string>
-    <string name="export_success_backup_messages">Success: Backup of Messages</string>
-    <string name="export_failures_backup_messages">Failure: Backup of Messages</string>
+    <string name="export_success_backup_messages">Message history exporteds</string>
+    <string name="export_failures_backup_messages">Message history export failed</string>
 </resources>

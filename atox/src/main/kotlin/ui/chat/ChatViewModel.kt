@@ -23,12 +23,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ltd.evilcorp.atox.R
 import ltd.evilcorp.atox.ui.NotificationHelper
-import ltd.evilcorp.core.vo.ConnectionStatus
-import ltd.evilcorp.core.vo.Contact
-import ltd.evilcorp.core.vo.FileTransfer
-import ltd.evilcorp.core.vo.Message
-import ltd.evilcorp.core.vo.MessageType
-import ltd.evilcorp.domain.feature.*
+import ltd.evilcorp.core.vo.*
+import ltd.evilcorp.domain.feature.BackupManager
+import ltd.evilcorp.domain.feature.CallManager
+import ltd.evilcorp.domain.feature.CallState
+import ltd.evilcorp.domain.feature.ChatManager
+import ltd.evilcorp.domain.feature.ContactManager
+import ltd.evilcorp.domain.feature.FileTransferManager
 import ltd.evilcorp.domain.tox.PublicKey
 import java.io.File
 import java.io.FileInputStream
@@ -165,7 +166,7 @@ class ChatViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, R.string.export_failures_backup_messages, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "${R.string.export_failures_backup_messages} : " + e.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
