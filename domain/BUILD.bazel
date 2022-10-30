@@ -33,7 +33,7 @@ kt_android_library(
         "@maven//:com_fasterxml_jackson_core_jackson_annotations",
         "@maven//:com_fasterxml_jackson_core_jackson_core",
         "@maven//:com_fasterxml_jackson_core_jackson_databind",
-        "@maven//:com_fasterxml_jackson_module_jackson_module",
+        "@maven//:com_fasterxml_jackson_module_jackson_module_kotlin",
     ],
 )
 
