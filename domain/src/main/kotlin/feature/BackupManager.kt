@@ -25,7 +25,10 @@ class BackupManager @Inject constructor(
     private fun List<Message>.generateBackupMessages(locationSave: String): BackupMessages {
         return BackupMessages(
             version = 1, //TODO @Akito: Increment version programmatically on major changes.
-            timestamp = SimpleDateFormat("""yyyy-MM-dd'T'HH-mm-ss""", ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)).format(Date()), //TODO @Akito: Put in Helper object.
+            timestamp = SimpleDateFormat(
+                """yyyy-MM-dd'T'HH-mm-ss""",
+                ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)).format(Date()
+            ), //TODO @Akito: Put in Helper object.
             locationSaved = locationSave,
             entries = this //TODO @Akito: Filter messages; remove file content from file messages.
         )
@@ -39,6 +42,7 @@ class BackupManager @Inject constructor(
     fun generateBackupMessagesJString(publicKey: String, locationSave: Uri): String = getMessages(publicKey)
         .generateBackupMessagesJString(
             locationSave.path
-                ?: throw IllegalStateException("""[backupHistory] Provided Backup Save Location may not be null!""") /* TODO @Akito: Improve Error Handling. */
+                ?: throw IllegalStateException("""[backupHistory] Provided Backup Save Location may not be null!""")
+                    /* TODO @Akito: Improve Error Handling. */
         )
 }
