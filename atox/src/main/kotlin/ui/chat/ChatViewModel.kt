@@ -23,7 +23,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ltd.evilcorp.atox.R
 import ltd.evilcorp.atox.ui.NotificationHelper
-import ltd.evilcorp.core.vo.*
+import ltd.evilcorp.core.vo.ConnectionStatus
+import ltd.evilcorp.core.vo.Contact
+import ltd.evilcorp.core.vo.FileTransfer
+import ltd.evilcorp.core.vo.Message
+import ltd.evilcorp.core.vo.MessageType
 import ltd.evilcorp.domain.feature.BackupManager
 import ltd.evilcorp.domain.feature.CallManager
 import ltd.evilcorp.domain.feature.CallState
