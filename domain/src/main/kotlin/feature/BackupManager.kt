@@ -44,8 +44,9 @@ class BackupManager @Inject constructor(
     fun generateBackupMessagesJString(publicKey: String, locationSave: Uri): String = getMessages(publicKey)
         .generateBackupMessagesJString(
             locationSave.path
-                ?: throw IllegalStateException("""[backupHistory] Provided Backup Save Location may not be null!""")
-                    /* TODO @Akito: Improve Error Handling. */
+                ?: throw IllegalStateException(
+                    """[backupHistory] Provided Backup Save Location may not be null!"""
+                ) /* TODO @Akito: Improve Error Handling. */
         )
 }
 

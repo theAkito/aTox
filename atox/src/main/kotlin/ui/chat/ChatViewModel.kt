@@ -165,12 +165,20 @@ class ChatViewModel @Inject constructor(
                     backupContent.byteInputStream().copyTo(os!!)
                 }
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, R.string.export_success_backup_messages, Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        R.string.export_success_backup_messages,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             } catch (e: Exception) {
                 Log.e(TAG, e.toString())
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "${R.string.export_failures_backup_messages} : " + e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        "${R.string.export_failures_backup_messages} : " + e.message,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
