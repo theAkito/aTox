@@ -24,6 +24,9 @@ class MessageRepository @Inject internal constructor(
     fun get(conversation: String): Flow<List<Message>> =
         messageDao.load(conversation)
 
+    fun getStatic(conversation: String): List<Message> =
+        messageDao.loadStatic(conversation)
+
     fun getPending(conversation: String): List<Message> =
         messageDao.loadPending(conversation)
 

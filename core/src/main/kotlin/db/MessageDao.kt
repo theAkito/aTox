@@ -19,6 +19,9 @@ interface MessageDao {
     @Query("SELECT * FROM messages WHERE conversation == :conversation")
     fun load(conversation: String): Flow<List<Message>>
 
+    @Query("SELECT * FROM messages WHERE conversation == :conversation")
+    fun loadStatic(conversation: String): List<Message>
+
     @Query("SELECT * FROM messages WHERE conversation == :conversation AND timestamp == 0")
     fun loadPending(conversation: String): List<Message>
 
