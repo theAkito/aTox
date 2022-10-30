@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.core.os.ConfigurationCompat
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import ltd.evilcorp.core.repository.MessageRepository
-import ltd.evilcorp.core.vo.BackupMessages
 import ltd.evilcorp.core.vo.Message
 import java.text.SimpleDateFormat
 import java.util.*
@@ -46,3 +45,10 @@ class BackupManager @Inject constructor(
                     /* TODO @Akito: Improve Error Handling. */
         )
 }
+
+data class BackupMessages(
+    val version: Int, /* Different model versions will require different import methods. */
+    val timestamp: String, /* Date & Time of when backup was saved. */
+    val locationSaved: String, /* Absolute path to directory, where backup was saved to. */
+    val entries: List<Message>
+)
