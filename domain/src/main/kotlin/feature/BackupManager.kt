@@ -12,6 +12,9 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.collections.List
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.runBlocking
 
 @Singleton
 class BackupManager @Inject constructor(
@@ -38,8 +41,9 @@ class BackupManager @Inject constructor(
     private fun List<Message>.generateBackupMessagesJString(locationSave: String): String =
         mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this.generateBackupMessages(locationSave))
 
-    private fun getMessages(publicKey: String): List<Message> =
-        messageRepository.getStatic(publicKey)
+    private fun getMessages(publicKey: String): List<Message> = runBlocking {
+        messageRepository.get(publicKey).first()
+    }
 
     fun generateBackupMessagesJString(publicKey: String, locationSave: Uri): String = getMessages(publicKey)
         .generateBackupMessagesJString(
