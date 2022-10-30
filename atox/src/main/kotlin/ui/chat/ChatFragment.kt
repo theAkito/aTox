@@ -74,10 +74,11 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(FragmentChatBinding::infl
     private var selectedFt: Int = Int.MIN_VALUE
     private var fts: List<FileTransfer> = listOf()
 
-    private val exportBackupLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { dest ->
-        if (dest == null) return@registerForActivityResult
-        viewModel.backupHistory(contactPubKey, dest)
-    }
+    private val exportBackupLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { dest ->
+            if (dest == null) return@registerForActivityResult
+            viewModel.backupHistory(contactPubKey, dest)
+        }
 
     private val exportFtLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument()) { dest ->
         if (dest == null) return@registerForActivityResult
@@ -158,8 +159,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(FragmentChatBinding::infl
                         "backup-atox-${"messages" /* TODO @Akito: Put in Helper object. */}_${
                             SimpleDateFormat(
                                 """yyyy-MM-dd'T'HH-mm-ss""",
-                                ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0)).format(Date()
-                            ) /* TODO @Akito: Put in Helper object. */
+                                ConfigurationCompat
+                                    .getLocales(
+                                        Resources.getSystem().configuration).get(0)
+                            ).format(Date()) /* TODO @Akito: Put in Helper object. */
                         }.json"
                     )
                     true
