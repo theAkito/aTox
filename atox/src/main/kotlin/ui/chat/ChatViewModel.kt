@@ -28,7 +28,7 @@ import ltd.evilcorp.core.vo.Contact
 import ltd.evilcorp.core.vo.FileTransfer
 import ltd.evilcorp.core.vo.Message
 import ltd.evilcorp.core.vo.MessageType
-import ltd.evilcorp.domain.feature.BackupManager
+import ltd.evilcorp.domain.feature.ExportManager
 import ltd.evilcorp.domain.feature.CallManager
 import ltd.evilcorp.domain.feature.CallState
 import ltd.evilcorp.domain.feature.ChatManager
@@ -50,7 +50,7 @@ enum class CallAvailability {
 class ChatViewModel @Inject constructor(
     private val callManager: CallManager,
     private val chatManager: ChatManager,
-    private val backupManager: BackupManager,
+    private val exportManager: ExportManager,
     private val contactManager: ContactManager,
     private val fileTransferManager: FileTransferManager,
     private val notificationHelper: NotificationHelper,
@@ -158,7 +158,7 @@ class ChatViewModel @Inject constructor(
     }
 
     fun backupHistory(publicKey: String, locationSave: Uri) = scope.launch {
-        val backupContent = backupManager.generateBackupMessagesJString(publicKey, locationSave)
+        val backupContent = exportManager.generateExportMessagesJString(publicKey)
         launch(Dispatchers.IO) {
             try {
                 resolver.openOutputStream(locationSave).use { os ->
@@ -167,7 +167,7 @@ class ChatViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         context,
-                        R.string.export_success_backup_messages,
+                        R.string.backup_history_success,
                         Toast.LENGTH_LONG,
                     ).show()
                 }
@@ -176,7 +176,7 @@ class ChatViewModel @Inject constructor(
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         context,
-                        "${R.string.export_failures_backup_messages} : " + e.message,
+                        "${R.string.backup_history_failure} : " + e.message,
                         Toast.LENGTH_LONG,
                     ).show()
                 }
