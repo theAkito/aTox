@@ -168,7 +168,7 @@ class ChatViewModel @Inject constructor(
                     Toast.makeText(
                         context,
                         R.string.export_success_backup_messages,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_LONG,
                     ).show()
                 }
             } catch (e: Exception) {
@@ -177,7 +177,7 @@ class ChatViewModel @Inject constructor(
                     Toast.makeText(
                         context,
                         "${R.string.export_failures_backup_messages} : " + e.message,
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_LONG,
                     ).show()
                 }
             }

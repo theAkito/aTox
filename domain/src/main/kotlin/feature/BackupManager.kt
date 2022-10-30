@@ -15,7 +15,7 @@ import kotlin.collections.List
 
 @Singleton
 class BackupManager @Inject constructor(
-    private val messageRepository: MessageRepository
+    private val messageRepository: MessageRepository,
 ) {
 
     companion object {
@@ -24,14 +24,14 @@ class BackupManager @Inject constructor(
 
     private fun List<Message>.generateBackupMessages(locationSave: String): BackupMessages {
         return BackupMessages(
-            version = 1, //TODO @Akito: Increment version programmatically on major changes.
+            version = 1, // TODO @Akito: Increment version programmatically on major changes.
             timestamp = SimpleDateFormat(
                 """yyyy-MM-dd'T'HH-mm-ss""",
                 ConfigurationCompat
-                    .getLocales(Resources.getSystem().configuration).get(0)
+                    .getLocales(Resources.getSystem().configuration).get(0),
             ).format(Date()),
             locationSaved = locationSave,
-            entries = this, //TODO @Akito: Filter messages; remove file content from file messages.
+            entries = this,
         )
     }
 
@@ -45,8 +45,8 @@ class BackupManager @Inject constructor(
         .generateBackupMessagesJString(
             locationSave.path
                 ?: throw IllegalStateException(
-                    """[backupHistory] Provided Backup Save Location may not be null!"""
-                ) /* TODO @Akito: Improve Error Handling. */
+                    """[backupHistory] Provided Backup Save Location may not be null!""",
+                ),
         )
 }
 
