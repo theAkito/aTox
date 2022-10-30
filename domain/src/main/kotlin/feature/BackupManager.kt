@@ -4,17 +4,14 @@ import android.content.res.Resources
 import android.net.Uri
 import androidx.core.os.ConfigurationCompat
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import ltd.evilcorp.core.repository.MessageRepository
 import ltd.evilcorp.core.vo.Message
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.collections.List
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.single
-import kotlinx.coroutines.runBlocking
 
 @Singleton
 class BackupManager @Inject constructor(
